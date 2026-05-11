@@ -32,11 +32,12 @@ provider "alz" {
 
 provider "azapi" {
   skip_provider_registration = true
-  subscription_id            = var.subscription_ids["management"]
+  subscription_id            = local.subscription_ids_effective["management"]
 }
 
 provider "azurerm" {
   resource_provider_registrations = "none"
+  subscription_id                 = var.subscription_id
   features {
     resource_group {
       prevent_deletion_if_contains_resources = false
@@ -47,7 +48,7 @@ provider "azurerm" {
 provider "azurerm" {
   resource_provider_registrations = "none"
   alias                           = "management"
-  subscription_id                 = var.subscription_ids["management"]
+  subscription_id                 = local.subscription_ids_effective["management"]
   features {
     resource_group {
       prevent_deletion_if_contains_resources = false
@@ -58,7 +59,7 @@ provider "azurerm" {
 provider "azurerm" {
   resource_provider_registrations = "none"
   alias                           = "connectivity"
-  subscription_id                 = var.subscription_ids["connectivity"]
+  subscription_id                 = local.subscription_ids_effective["connectivity"]
   features {
     resource_group {
       prevent_deletion_if_contains_resources = false
@@ -69,5 +70,5 @@ provider "azurerm" {
 provider "azapi" {
   alias                      = "connectivity"
   skip_provider_registration = true
-  subscription_id            = var.subscription_ids["connectivity"]
+  subscription_id            = local.subscription_ids_effective["connectivity"]
 }

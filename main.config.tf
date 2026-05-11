@@ -3,10 +3,10 @@ module "config" {
 
   starter_locations               = var.starter_locations
   starter_locations_short         = var.starter_locations_short
-  subscription_id_connectivity    = var.subscription_ids["connectivity"]
-  subscription_id_identity        = try(var.subscription_ids["identity"], "")
-  subscription_id_management      = var.subscription_ids["management"]
-  subscription_id_security        = try(var.subscription_ids["security"], "")
+  subscription_id_connectivity    = local.subscription_ids_effective["connectivity"]
+  subscription_id_identity        = local.subscription_ids_effective["identity"]
+  subscription_id_management      = local.subscription_ids_effective["management"]
+  subscription_id_security        = local.subscription_ids_effective["security"]
   root_parent_management_group_id = var.root_parent_management_group_id
 
   custom_replacements = var.custom_replacements
